@@ -139,6 +139,8 @@ a{color:var(--gold);text-decoration:none}
 .product-demo{width:100%}
 .contact-wrap{flex-direction:column}
 .hz-dashboard{grid-template-columns:repeat(2,1fr)}
+.hz-data-row4{grid-template-columns:repeat(2,1fr)!important}
+.hz-data-row3{grid-template-columns:repeat(2,1fr)!important}
 .bt-table{font-size:11px}
 .bt-table th,.bt-table td{padding:6px 8px}
 }
@@ -520,9 +522,16 @@ a{color:var(--gold);text-decoration:none}
   </div>
   <div class="hz-strait-footer">🔴 封锁第4天 | 今日 15 艘通行 | 川子称"永久开放" | 4/22停火到期</div>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-<div class="hz-card oil"><div class="hz-val">$84.0</div><div class="hz-label">🛢️ WTI原油 ↓7.9%</div></div>
-<div class="hz-card gold"><div class="hz-val">$4,834</div><div class="hz-label">🥇 COMEX黄金 ↓0.3%</div></div>
+<div class="hz-data-row4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px">
+<div class="hz-card oil"><div class="hz-val" style="font-size:20px">$84.0</div><div class="hz-label">🛢️ WTI原油<br><span style="color:#ef4444">↓7.9%</span></div></div>
+<div class="hz-card gold"><div class="hz-val" style="font-size:20px">$4,834</div><div class="hz-label">🥇 COMEX黄金<br><span style="color:#ef4444">↓0.3%</span></div></div>
+<div class="hz-card ship"><div class="hz-val" style="font-size:20px">15 艘</div><div class="hz-label">🚢 今日通行<br><span style="color:#3b82f6">↑7 艘</span></div></div>
+<div class="hz-card level"><div class="hz-val" style="font-size:20px">L4</div><div class="hz-label">⚠️ 封锁等级<br><span style="color:#f97316">对峙中</span></div></div>
+</div>
+<div class="hz-data-row3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px">
+<div class="hz-card" style="border-color:rgba(239,68,68,.3)"><div class="hz-val" style="font-size:16px;color:#ef4444">❌ 封锁中</div><div class="hz-label">LNG 通行状态<br><span style="color:var(--text2)">气船清零 4 天</span></div></div>
+<div class="hz-card" style="border-color:rgba(212,175,55,.3)"><div class="hz-val" style="font-size:16px;color:var(--gold)">11%</div><div class="hz-label">📊 海峡恢复度<br><span style="color:var(--text2)">战前正常 135 艘</span></div></div>
+<div class="hz-card" style="border-color:rgba(59,130,246,.3)"><div class="hz-val" style="font-size:16px;color:#3b82f6">4/22</div><div class="hz-label">⏱️ 停火到期<br><span style="color:#f97316">倒计时 4 天</span></div></div>
 </div>
 </div>
 </div>
