@@ -142,6 +142,101 @@ a{color:var(--gold);text-decoration:none}
 .bt-table{font-size:11px}
 .bt-table th,.bt-table td{padding:6px 8px}
 }
+/* ===== 霍尔木兹船只动画 ===== */
+.hz-strait-wrap {
+  background:linear-gradient(135deg,#0a1628 0%,#0d2040 100%);
+  border:1px solid #1e3a5a;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,80,160,0.2);
+}
+.hz-strait-header {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px 8px;
+}
+.hz-strait-title {
+  color:#58a6ff;font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:6px;
+}
+.hz-strait-coord { color:#3a5070;font-size:11px; }
+.hz-strait-map {
+  position:relative;width:100%;height:120px;overflow:hidden;
+  background:linear-gradient(180deg,#071018 0%,#0a1e38 35%,#0d2a50 50%,#0a1e38 65%,#071018 100%);
+}
+.hz-wave {
+  position:absolute;left:0;right:0;height:40px;opacity:0.15;
+  background:repeating-linear-gradient(90deg,transparent,transparent 40px,#4a9eff 40px,#4a9eff 42px);
+  animation:hz-wave-move 4s linear infinite;
+}
+.hz-wave1 { top:40px; animation-duration:6s; }
+.hz-wave2 { top:50px; animation-duration:9s; animation-delay:-3s; opacity:0.08; }
+.hz-wave3 { top:60px; animation-duration:7s; animation-delay:-1.5s; opacity:0.06; }
+@keyframes hz-wave-move { 0%{transform:translateX(0)} 100%{transform:translateX(42px)} }
+.hz-divider-line {
+  position:absolute;top:50%;left:0;right:0;
+  border-top:1px dashed rgba(74,158,255,0.2);transform:translateY(-50%);
+}
+.hz-coast-north {
+  position:absolute;top:0;left:0;right:0;height:26px;
+  background:linear-gradient(180deg,#1a3020 0%,#142818 100%);
+  border-bottom:2px solid rgba(60,120,60,0.6);
+  border-radius:0 0 24px 16px;
+}
+.hz-coast-north::after {
+  content:'';position:absolute;bottom:-8px;left:0;right:0;height:8px;
+  background:linear-gradient(180deg,rgba(20,80,20,0.3),transparent);
+}
+.hz-coast-south {
+  position:absolute;bottom:0;left:0;right:0;height:24px;
+  background:linear-gradient(0deg,#2a1f0a 0%,#1e1608 100%);
+  border-top:2px solid rgba(120,100,30,0.6);
+  border-radius:16px 24px 0 0;
+}
+.hz-dir-in  {
+  position:absolute;top:50%;left:8px;
+  transform:translateY(-50%) translateY(-10px);
+  color:rgba(74,158,255,0.4);font-size:10px;letter-spacing:1px;
+}
+.hz-dir-out {
+  position:absolute;top:50%;right:8px;
+  transform:translateY(-50%) translateY(10px);
+  color:rgba(74,158,255,0.4);font-size:10px;letter-spacing:1px;
+}
+.hz-map-label-iran {
+  position:absolute;top:4px;left:10px;
+  color:rgba(100,180,100,0.9);font-size:11px;z-index:10;
+  text-shadow:0 1px 4px #000;
+}
+.hz-map-label-oman {
+  position:absolute;bottom:3px;left:10px;
+  color:rgba(180,160,80,0.9);font-size:11px;z-index:10;
+  text-shadow:0 1px 4px #000;
+}
+.hz-ship-badge {
+  position:absolute;top:8px;right:10px;
+  background:rgba(250,173,20,0.12);
+  border:1px solid rgba(250,173,20,0.5);
+  border-radius:12px;padding:3px 10px;z-index:20;
+  backdrop-filter:blur(4px);
+}
+.hz-ship-badge span { color:#faad14;font-size:11px;font-weight:700; }
+.hz-ship {
+  position:absolute;z-index:15;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+  will-change:left;
+}
+.hz-s1 { top:32px; font-size:18px; animation:hz-sail-in 14s linear infinite; }
+.hz-s2 { top:40px; font-size:15px; animation:hz-sail-in 20s linear infinite; animation-delay:-7s; }
+.hz-s3 { top:27px; font-size:14px; animation:hz-sail-in 25s linear infinite; animation-delay:-12s; }
+.hz-s4 { top:66px; font-size:18px; animation:hz-sail-out 17s linear infinite; animation-delay:-4s; }
+.hz-s5 { top:75px; font-size:15px; animation:hz-sail-out 22s linear infinite; animation-delay:-10s; }
+.hz-s6 { top:60px; font-size:14px; animation:hz-sail-out 28s linear infinite; animation-delay:-18s; }
+@keyframes hz-sail-in  { 0%{left:108%} 100%{left:-8%} }
+@keyframes hz-sail-out { 0%{left:-8%} 100%{left:108%} }
+.hz-strait-footer {
+  text-align:center;font-size:11px;color:#3a5070;
+  padding:6px 12px 8px;border-top:1px solid #1e3a5a;
+}
 </style>
 </head>
 <body>
@@ -399,17 +494,35 @@ a{color:var(--gold);text-decoration:none}
 </div>
 </div>
 <div class="product-demo">
-<div style="background:#0d1117;border:1px solid var(--border);border-radius:12px;padding:20px">
-<div style="font-size:14px;color:var(--gold);font-weight:600;margin-bottom:12px">📡 霍尔木兹海峡 · 实时数据面板</div>
-<div class="hz-dashboard">
-<div class="hz-card oil"><div class="hz-val">$90.77</div><div class="hz-label">🛢️ WTI原油 ↓3.4%</div></div>
-<div class="hz-card gold"><div class="hz-val">$4,858</div><div class="hz-label">🥇 COMEX黄金 ↑0.4%</div></div>
-<div class="hz-card ship"><div class="hz-val">8 艘</div><div class="hz-label">🚢 今日通行（↓94%）</div></div>
-<div class="hz-card level"><div class="hz-val">L4</div><div class="hz-label">⚠️ 封锁对峙</div></div>
+<div class="hz-strait-wrap">
+  <div class="hz-strait-header">
+    <span class="hz-strait-title">🌊 霍尔木兹海峡</span>
+    <span class="hz-strait-coord">北纬26.5° / 东经56.5°</span>
+  </div>
+  <div class="hz-strait-map">
+    <div class="hz-coast-north"></div>
+    <div class="hz-coast-south"></div>
+    <div class="hz-wave hz-wave1"></div>
+    <div class="hz-wave hz-wave2"></div>
+    <div class="hz-wave hz-wave3"></div>
+    <div class="hz-divider-line"></div>
+    <span class="hz-dir-in">← 入境</span>
+    <span class="hz-dir-out">出境 →</span>
+    <span class="hz-map-label-iran">🇮🇷 伊朗</span>
+    <span class="hz-map-label-oman">🇴🇲 阿曼</span>
+    <div class="hz-ship-badge"><span>今日 15 艘</span></div>
+    <span class="hz-ship hz-s1">🚢</span>
+    <span class="hz-ship hz-s2">⛴️</span>
+    <span class="hz-ship hz-s3">🚤</span>
+    <span class="hz-ship hz-s4">🛢️</span>
+    <span class="hz-ship hz-s5">🚢</span>
+    <span class="hz-ship hz-s6">⛽</span>
+  </div>
+  <div class="hz-strait-footer">🔴 封锁第4天 | 今日 15 艘通行 | 川子称"永久开放" | 4/22停火到期</div>
 </div>
-<div style="background:var(--bg);border-radius:8px;padding:10px;font-size:11px;color:var(--text2);line-height:1.6">
-<span style="color:#f97316;font-weight:600">🔴</span> 封锁第4天 | 10船劝返 | 川子称"永久开放" | 4/22停火到期
-</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+<div class="hz-card oil"><div class="hz-val">$84.0</div><div class="hz-label">🛢️ WTI原油 ↓7.9%</div></div>
+<div class="hz-card gold"><div class="hz-val">$4,834</div><div class="hz-label">🥇 COMEX黄金 ↓0.3%</div></div>
 </div>
 </div>
 </div>
