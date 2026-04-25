@@ -780,7 +780,114 @@ a{color:var(--gold);text-decoration:none}
 </div>
 </div>
 
-<!-- 产品4：AI智能客服 -->
+<!-- 产品4：2026美国中期选举追踪 -->
+<div class="product reverse fade-in">
+<div class="product-info">
+<div class="product-tag">🗳️ 选举追踪</div>
+<h3>2026 美国中期选举追踪</h3>
+<p>实时追踪2026年美国国会选举动态。民调均值、预测市场概率、关键摇摆州态势一屏掌握，数据每日自动更新。</p>
+<p style="margin-top:12px">覆盖参众两院435+35席全景——从超级星期二初选到11月投票日，每一轮民调波动都实时呈现，与A股、期货市场联动分析。</p>
+<ul style="margin-top:16px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px">
+<li style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--gold);font-size:16px;line-height:1.5">📊</span><span style="color:var(--text2);font-size:14px;line-height:1.7"><strong style="color:#fff">民调追踪</strong> — 通用选票均值 D+5.8%，本届周期新高</span></li>
+<li style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--gold);font-size:16px;line-height:1.5">🗺️</span><span style="color:var(--text2);font-size:14px;line-height:1.7"><strong style="color:#fff">摇摆州地图</strong> — 11个关键州实时着色，选情一眼看穿</span></li>
+<li style="display:flex;align-items:flex-start;gap:10px"><span style="color:var(--gold);font-size:16px;line-height:1.5">💹</span><span style="color:var(--text2);font-size:14px;line-height:1.7"><strong style="color:#fff">期货影响</strong> — 民主党/共和党控院对大宗商品、A股板块的传导路径</span></li>
+</ul>
+<div style="margin-top:24px">
+<a href="http://139.196.122.66:8081" target="_blank" class="hz-btn" style="background:linear-gradient(135deg,rgba(30,60,120,.8),rgba(15,40,90,.9));border-color:rgba(88,166,255,.4);color:#58a6ff">查看选举追踪 →</a>
+</div>
+</div>
+<div class="product-demo">
+<!-- 选举仪表盘 Mock -->
+<div style="background:#0d1117;border:1px solid #1e2733;border-radius:14px;overflow:hidden;font-family:'Noto Sans SC',sans-serif">
+  <!-- 顶部标题栏 -->
+  <div style="background:#161b22;border-bottom:1px solid #21262d;padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:14px;font-weight:700;color:#e6edf3">🇺🇸 2026 中期选举追踪</div>
+      <div style="font-size:10px;color:#8b949e;margin-top:2px;font-family:monospace">US Midterm Elections Tracker</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="width:7px;height:7px;border-radius:50%;background:#3fb950;display:inline-block;animation:pulse 2s infinite"></span>
+      <span style="font-size:11px;color:#3fb950;font-family:monospace">实时</span>
+    </div>
+  </div>
+  <!-- 核心判断横幅 -->
+  <div style="margin:14px 14px 0;background:linear-gradient(135deg,#161b22,#1a2332);border:1px solid #30363d;border-left:3px solid #3fb950;border-radius:10px;padding:12px 14px">
+    <div style="font-size:10px;color:#8b949e;margin-bottom:4px;font-family:monospace">当前核心判断</div>
+    <div style="font-size:14px;font-weight:700;color:#e6edf3">📢 民主党大概率夺回众议院</div>
+    <div style="font-size:11px;color:#8b949e;margin-top:2px">参议院共和党优势稳固，短期难以撼动</div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <div style="background:#0d1117;border-radius:6px;padding:5px 10px;display:flex;align-items:center;gap:5px">
+        <span style="font-size:10px;color:#8b949e">众院胜率</span>
+        <span style="font-size:16px;font-weight:700;color:#3fb950;font-family:monospace">85%</span>
+      </div>
+      <div style="background:#0d1117;border-radius:6px;padding:5px 10px;display:flex;align-items:center;gap:5px">
+        <span style="font-size:10px;color:#8b949e">民调领先</span>
+        <span style="font-size:16px;font-weight:700;color:#f0b429;font-family:monospace">+5.8%</span>
+      </div>
+      <div style="background:#0d1117;border-radius:6px;padding:5px 10px;display:flex;align-items:center;gap:5px">
+        <span style="font-size:10px;color:#8b949e">距投票日</span>
+        <span style="font-size:16px;font-weight:700;color:#58a6ff;font-family:monospace" id="elec-days">--天</span>
+      </div>
+    </div>
+  </div>
+  <!-- 3个数字卡 -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 14px">
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-size:10px;color:#8b949e;margin-bottom:4px">众院民主党胜率</div>
+      <div style="font-size:20px;font-weight:700;color:#3fb950;font-family:monospace">85%</div>
+      <div style="font-size:9px;color:#3fb950;margin-top:2px">▲ 上升</div>
+    </div>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-size:10px;color:#8b949e;margin-bottom:4px">特朗普净支持</div>
+      <div style="font-size:20px;font-weight:700;color:#f85149;font-family:monospace">-10pt</div>
+      <div style="font-size:9px;color:#f85149;margin-top:2px">43% vs 53%</div>
+    </div>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-size:10px;color:#8b949e;margin-bottom:4px">民调领先幅度</div>
+      <div style="font-size:20px;font-weight:700;color:#f0b429;font-family:monospace">+5.8%</div>
+      <div style="font-size:9px;color:#f0b429;margin-top:2px">▲ 本届最高</div>
+    </div>
+  </div>
+  <!-- 参众院席位 -->
+  <div style="padding:0 14px 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <!-- 众议院 -->
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px">
+      <div style="font-size:10px;color:#8b949e;margin-bottom:6px">众议院（435席）</div>
+      <div style="height:6px;background:#21262d;border-radius:3px;overflow:hidden;margin-bottom:6px">
+        <div style="height:100%;width:50.1%;background:linear-gradient(90deg,#c0152a,#e0293a);border-radius:3px;float:left"></div>
+        <div style="height:100%;width:49%;background:linear-gradient(90deg,#1a4fa0,#0d3fa3);border-radius:3px;float:right"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px">
+        <span style="color:#f85149;font-family:monospace;font-weight:700">🔴 R 218</span>
+        <span style="color:#58a6ff;font-family:monospace;font-weight:700">D 213 🔵</span>
+      </div>
+    </div>
+    <!-- 参议院 -->
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px">
+      <div style="font-size:10px;color:#8b949e;margin-bottom:6px">参议院（100席）</div>
+      <div style="height:6px;background:#21262d;border-radius:3px;overflow:hidden;margin-bottom:6px">
+        <div style="height:100%;width:53%;background:linear-gradient(90deg,#c0152a,#e0293a);border-radius:3px;float:left"></div>
+        <div style="height:100%;width:47%;background:linear-gradient(90deg,#1a4fa0,#0d3fa3);border-radius:3px;float:right"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px">
+        <span style="color:#f85149;font-family:monospace;font-weight:700">🔴 R 53</span>
+        <span style="color:#58a6ff;font-family:monospace;font-weight:700">D 47 🔵</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  var ed = new Date('2026-11-03T00:00:00-05:00');
+  var diff = Math.max(0, Math.ceil((ed - new Date()) / 86400000));
+  var el = document.getElementById('elec-days');
+  if(el) el.textContent = diff + '天';
+})();
+</script>
+
+<!-- 产品5：AI智能客服 -->
 <div class="product reverse fade-in">
 <div class="product-info">
 <div class="product-tag">🤖 AI 客服</div>
@@ -1151,6 +1258,7 @@ a{color:var(--gold);text-decoration:none}
 <a href="http://139.196.122.66:8005" target="_blank">交易账户智能分析</a>
 <a href="#products">AI 量化指标</a>
 <a href="https://hz.clawx.gold" target="_blank">霍尔木兹海峡追踪</a>
+<a href="http://139.196.122.66:8081" target="_blank">2026中期选举追踪</a>
 <a href="#products">主力行为智能追踪</a>
 </div>
 <div class="footer-col">
