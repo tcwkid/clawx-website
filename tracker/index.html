@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#0d1117" />
   <title>进度条追踪中心 · Tracker Hub</title>
   <meta name="description" content="进度条出品 · 霍尔木兹海峡追踪 · 厄尔尼诺大宗商品 · 2026美国中期选举" />
-  <!-- Open Graph -->
   <meta property="og:title" content="进度条追踪中心" />
   <meta property="og:description" content="霍尔木兹 · 厄尔尼诺 · 中期选举 · 进度条出品" />
   <meta property="og:url" content="https://www.clawx.gold/tracker/" />
@@ -19,243 +18,167 @@
       --border: #21262d;
       --text: #e6edf3;
       --muted: #8b949e;
-      --accent-hz: #58a6ff;      /* 霍尔木兹 蓝 */
-      --accent-el: #f97316;      /* 厄尔尼诺 橙 */
-      --accent-us: #e63946;      /* 中期选举 红 */
-      --tab-h: 56px;
+      --accent-hz: #58a6ff;
+      --accent-el: #f97316;
+      --accent-us: #e63946;
       --header-h: 52px;
-      --footer-h: 72px;
+      --bottom-h: 116px; /* tab(56) + footer(60) */
+      --tab-h: 56px;
+      --footer-h: 60px;
     }
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
+    html, body { height: 100%; background: var(--bg); color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-      overflow: hidden;
-    }
+      overflow: hidden; }
 
     /* ── Header ── */
     .header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       height: var(--header-h);
       background: var(--bg);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; z-index: 200;
     }
-    .header-logo {
-      display: flex; align-items: center; gap: 8px;
-    }
-    .header-logo .logo-icon {
+    .header-logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon {
       width: 28px; height: 28px;
       background: linear-gradient(135deg, #58a6ff, #f97316, #e63946);
       border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px;
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
     }
-    .header-logo .logo-text {
-      font-size: 15px; font-weight: 700; color: var(--text);
-    }
-    .header-logo .logo-sub {
-      font-size: 11px; color: var(--muted);
-      display: none;
-    }
-    @media(min-width:480px){
-      .header-logo .logo-sub { display: block; }
-    }
+    .logo-text { font-size: 15px; font-weight: 700; }
+    .logo-sub  { font-size: 11px; color: var(--muted); display: none; }
+    @media(min-width:480px){ .logo-sub { display: block; } }
     .header-link {
-      font-size: 12px; color: var(--muted);
-      text-decoration: none;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      transition: border-color .2s, color .2s;
-    }
-    .header-link:active { color: var(--text); border-color: var(--muted); }
-
-    /* ── Tab Bar ── */
-    .tab-bar {
-      position: fixed;
-      top: var(--header-h);
-      left: 0; right: 0;
-      height: var(--tab-h);
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      z-index: 200;
-      overflow: hidden;
-    }
-    .tab {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: relative;
-      gap: 2px;
-      transition: background .15s;
+      font-size: 12px; color: var(--muted); text-decoration: none;
+      padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px;
       -webkit-tap-highlight-color: transparent;
-      user-select: none;
     }
-    .tab:active { background: rgba(255,255,255,.04); }
-    .tab .tab-emoji { font-size: 18px; line-height: 1; }
-    .tab .tab-label { font-size: 11px; color: var(--muted); font-weight: 500; transition: color .2s; }
-    .tab .tab-indicator {
-      position: absolute;
-      bottom: 0; left: 10%; right: 10%;
-      height: 2px;
-      border-radius: 2px 2px 0 0;
-      transform: scaleX(0);
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1);
-    }
-    /* Active states */
-    .tab.active[data-id="hz"] .tab-label { color: var(--accent-hz); }
-    .tab.active[data-id="el"] .tab-label { color: var(--accent-el); }
-    .tab.active[data-id="us"] .tab-label { color: var(--accent-us); }
-    .tab.active[data-id="hz"] .tab-indicator { background: var(--accent-hz); transform: scaleX(1); }
-    .tab.active[data-id="el"] .tab-indicator { background: var(--accent-el); transform: scaleX(1); }
-    .tab.active[data-id="us"] .tab-indicator { background: var(--accent-us); transform: scaleX(1); }
 
     /* ── iframe 容器 ── */
     .iframe-wrap {
       position: fixed;
-      top: calc(var(--header-h) + var(--tab-h));
+      top: var(--header-h);
       left: 0; right: 0;
-      bottom: var(--footer-h);
-      display: none;
-      overflow: hidden;
+      bottom: var(--bottom-h);
+      display: none; overflow: hidden;
     }
     .iframe-wrap.active { display: block; }
-    .iframe-wrap iframe {
-      width: 100%; height: 100%;
-      border: none;
-      display: block;
-    }
+    .iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
 
     /* 加载遮罩 */
-    .iframe-wrap .loader {
+    .loader {
       position: absolute; inset: 0;
       background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      z-index: 10;
-      transition: opacity .4s;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      z-index: 10; transition: opacity .4s;
     }
-    .iframe-wrap .loader.hide { opacity: 0; pointer-events: none; }
+    .loader.hide { opacity: 0; pointer-events: none; }
     .loader-spinner {
       width: 36px; height: 36px;
       border: 3px solid var(--border);
-      border-top-color: var(--accent);
       border-radius: 50%;
       animation: spin .8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loader-text { font-size: 13px; color: var(--muted); }
 
-    /* ── Footer ── */
-    .footer {
+    /* ── Tab Bar（底部） ── */
+    .tab-bar {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: var(--footer-h);
+      bottom: var(--footer-h);
+      left: 0; right: 0;
+      height: var(--tab-h);
       background: var(--surface);
       border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      z-index: 200;
+      display: flex; z-index: 200;
     }
-    .footer-brand {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
+    .tab {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      cursor: pointer; gap: 3px; position: relative;
+      -webkit-tap-highlight-color: transparent; user-select: none;
+      transition: background .15s;
     }
-    .footer-stats {
-      font-size: 12px;
-      color: var(--muted);
+    .tab:active { background: rgba(255,255,255,.04); }
+    .tab .tab-emoji { font-size: 20px; line-height: 1; }
+    .tab .tab-label { font-size: 10px; color: var(--muted); font-weight: 500; transition: color .2s; }
+    .tab .tab-indicator {
+      position: absolute; top: 0; left: 15%; right: 15%;
+      height: 2px; border-radius: 0 0 2px 2px;
+      transform: scaleX(0);
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1);
     }
-    .footer-stats .stat-num {
-      color: var(--text);
-      font-weight: 700;
-    }
+    .tab.active[data-id="hz"] .tab-label   { color: var(--accent-hz); }
+    .tab.active[data-id="el"] .tab-label   { color: var(--accent-el); }
+    .tab.active[data-id="us"] .tab-label   { color: var(--accent-us); }
+    .tab.active[data-id="hz"] .tab-indicator { background: var(--accent-hz); transform: scaleX(1); }
+    .tab.active[data-id="el"] .tab-indicator { background: var(--accent-el); transform: scaleX(1); }
+    .tab.active[data-id="us"] .tab-indicator { background: var(--accent-us); transform: scaleX(1); }
 
-    /* ── 悬浮分享FAB ── */
-    .share-fab {
-      position: fixed;
-      right: 16px;
-      bottom: calc(var(--footer-h) + 16px);
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, #58a6ff, #f97316);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 300;
-      font-size: 18px;
-      box-shadow: 0 4px 15px rgba(88,166,255,.3);
-      animation: fab-in .35s cubic-bezier(.34,1.56,.64,1);
-      -webkit-tap-highlight-color: transparent;
+    /* ── Footer（最底部：统计 + 分享按钮） ── */
+    .footer {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: var(--footer-h);
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; z-index: 200; gap: 10px;
     }
-    .share-fab:active { transform: scale(.9); }
-    @keyframes fab-in { from{transform:scale(0)} to{transform:scale(1)} }
+    .footer-left {
+      display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0;
+    }
+    .footer-brand { font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .footer-stats { font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .stat-num { color: var(--text); font-weight: 700; }
+
+    /* 分享按钮（嵌入footer，非悬浮） */
+    .share-btn {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 14px;
+      background: linear-gradient(135deg, rgba(88,166,255,.15), rgba(249,115,22,.15));
+      border: 1px solid rgba(88,166,255,.25);
+      border-radius: 20px;
+      color: var(--text); font-size: 13px; font-weight: 500;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .share-btn:active { background: rgba(88,166,255,.25); }
 
     /* ── 分享弹窗 ── */
     .share-mask {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,.65);
-      z-index: 500;
-      align-items: flex-end;
-      justify-content: center;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.65); z-index: 500;
+      align-items: flex-end; justify-content: center;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     }
     .share-mask.show { display: flex !important; }
     .share-sheet {
-      background: #161b22;
-      border-radius: 20px 20px 0 0;
-      padding: 20px 20px 40px;
-      width: 100%;
-      max-width: 520px;
+      background: #161b22; border-radius: 20px 20px 0 0;
+      padding: 20px 20px 40px; width: 100%; max-width: 520px;
       animation: sheet-up .25s ease;
     }
     @keyframes sheet-up { from{transform:translateY(100%)} to{transform:translateY(0)} }
-
     .share-title { font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 4px; }
     .share-desc  { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 16px; }
 
-    /* tab 选择器 in share sheet */
-    .share-tab-select {
-      display: flex; gap: 8px; margin-bottom: 14px;
-    }
+    .share-tab-select { display: flex; gap: 8px; margin-bottom: 14px; }
     .share-tab-btn {
       flex: 1; padding: 7px 0; border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--muted); font-size: 12px;
-      cursor: pointer; transition: all .15s;
-      -webkit-tap-highlight-color: transparent;
+      border: 1px solid var(--border); background: var(--bg);
+      color: var(--muted); font-size: 12px; cursor: pointer;
+      -webkit-tap-highlight-color: transparent; transition: all .15s;
     }
     .share-tab-btn.active { color: var(--text); border-color: var(--muted); background: var(--surface); }
 
     .share-preview {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 16px;
-      position: relative;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 14px; margin-bottom: 16px; position: relative;
     }
     .sp-label { font-size: 10px; color: var(--muted); margin-bottom: 6px; }
     .sp-text  { font-size: 13px; color: var(--text); line-height: 1.7; white-space: pre-line; padding-right: 52px; }
@@ -263,17 +186,12 @@
       position: absolute; right: 10px; top: 10px;
       background: var(--surface); border: 1px solid var(--border);
       color: var(--muted); font-size: 11px; padding: 3px 10px;
-      border-radius: 6px; cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      border-radius: 6px; cursor: pointer; -webkit-tap-highlight-color: transparent;
     }
-    .copy-btn:active { background: var(--border); }
-
-    .share-options {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px;
-    }
+    .share-options { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
     .share-opt {
-      display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
     }
     .share-icon {
       width: 52px; height: 52px; border-radius: 14px;
@@ -282,26 +200,18 @@
     }
     .share-opt:active .share-icon { transform: scale(.88); }
     .share-opt span { font-size: 11px; color: var(--muted); }
-
     .share-cancel {
-      width: 100%; padding: 13px;
-      background: var(--surface); border: none;
-      color: var(--muted); font-size: 15px;
-      border-radius: 12px; cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      width: 100%; padding: 13px; background: var(--surface); border: none;
+      color: var(--muted); font-size: 15px; border-radius: 12px; cursor: pointer;
     }
-    .share-cancel:active { background: var(--border); }
 
     /* Toast */
     #hub-toast {
-      position: fixed; bottom: calc(var(--footer-h) + 72px); left: 50%;
+      position: fixed; bottom: calc(var(--bottom-h) + 16px); left: 50%;
       transform: translateX(-50%);
-      background: #1c2333; color: var(--text);
-      padding: 10px 22px; border-radius: 20px;
-      font-size: 13px; z-index: 999;
-      pointer-events: none; opacity: 0;
-      transition: opacity .3s;
-      white-space: nowrap;
+      background: #1c2333; color: var(--text); padding: 10px 22px;
+      border-radius: 20px; font-size: 13px; z-index: 999;
+      pointer-events: none; opacity: 0; transition: opacity .3s; white-space: nowrap;
     }
   </style>
 </head>
@@ -319,66 +229,62 @@
     <a class="header-link" href="https://www.clawx.gold" target="_blank">官网</a>
   </header>
 
-  <!-- Tab Bar -->
-  <nav class="tab-bar">
-    <div class="tab active" data-id="hz" onclick="switchTab('hz')">
-      <span class="tab-emoji">🛢️</span>
-      <span class="tab-label">霍尔木兹</span>
-      <div class="tab-indicator"></div>
-    </div>
-    <div class="tab" data-id="el" onclick="switchTab('el')">
-      <span class="tab-emoji">🌡️</span>
-      <span class="tab-label">厄尔尼诺</span>
-      <div class="tab-indicator"></div>
-    </div>
-    <div class="tab" data-id="us" onclick="switchTab('us')">
-      <span class="tab-emoji">🗳️</span>
-      <span class="tab-label">中期选举</span>
-      <div class="tab-indicator"></div>
-    </div>
-  </nav>
-
   <!-- iframes -->
   <div class="iframe-wrap active" id="wrap-hz">
-    <div class="loader" id="loader-hz" style="--accent: var(--accent-hz)">
-      <div class="loader-spinner" style="border-top-color: var(--accent-hz)"></div>
+    <div class="loader" id="loader-hz">
+      <div class="loader-spinner" style="border-top-color:var(--accent-hz)"></div>
       <div class="loader-text">🛢️ 加载霍尔木兹...</div>
     </div>
     <iframe id="iframe-hz" title="霍尔木兹海峡追踪" scrolling="yes" allow="clipboard-write"></iframe>
   </div>
-
   <div class="iframe-wrap" id="wrap-el">
-    <div class="loader" id="loader-el" style="--accent: var(--accent-el)">
-      <div class="loader-spinner" style="border-top-color: var(--accent-el)"></div>
+    <div class="loader" id="loader-el">
+      <div class="loader-spinner" style="border-top-color:var(--accent-el)"></div>
       <div class="loader-text">🌡️ 加载厄尔尼诺...</div>
     </div>
     <iframe id="iframe-el" title="厄尔尼诺大宗商品追踪" scrolling="yes" allow="clipboard-write"></iframe>
   </div>
-
   <div class="iframe-wrap" id="wrap-us">
-    <div class="loader" id="loader-us" style="--accent: var(--accent-us)">
-      <div class="loader-spinner" style="border-top-color: var(--accent-us)"></div>
+    <div class="loader" id="loader-us">
+      <div class="loader-spinner" style="border-top-color:var(--accent-us)"></div>
       <div class="loader-text">🗳️ 加载中期选举...</div>
     </div>
     <iframe id="iframe-us" title="2026美国中期选举追踪" scrolling="yes" allow="clipboard-write"></iframe>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-brand">进度条 · 全网最神棍的预测</div>
-    <div class="footer-stats">
-      本站访问
-      <span class="stat-num" id="busuanzi_pv_display">--</span> 次
-      &nbsp;|&nbsp;
-      访客
-      <span class="stat-num" id="busuanzi_uv_display">--</span> 人
+  <!-- Tab Bar（底部，在footer上方） -->
+  <nav class="tab-bar">
+    <div class="tab active" data-id="hz" onclick="switchTab('hz')">
+      <div class="tab-indicator"></div>
+      <span class="tab-emoji">🛢️</span>
+      <span class="tab-label">霍尔木兹</span>
     </div>
+    <div class="tab" data-id="el" onclick="switchTab('el')">
+      <div class="tab-indicator"></div>
+      <span class="tab-emoji">🌡️</span>
+      <span class="tab-label">厄尔尼诺</span>
+    </div>
+    <div class="tab" data-id="us" onclick="switchTab('us')">
+      <div class="tab-indicator"></div>
+      <span class="tab-emoji">🗳️</span>
+      <span class="tab-label">中期选举</span>
+    </div>
+  </nav>
+
+  <!-- Footer：统计 + 分享按钮 -->
+  <footer class="footer">
+    <div class="footer-left">
+      <div class="footer-brand">进度条 · 全网最神棍的预测</div>
+      <div class="footer-stats">
+        访问 <span class="stat-num" id="busuanzi_pv_display">--</span> 次
+        &nbsp;·&nbsp;
+        访客 <span class="stat-num" id="busuanzi_uv_display">--</span> 人
+      </div>
+    </div>
+    <button class="share-btn" onclick="openShare()">🔗 分享</button>
   </footer>
   <span id="busuanzi_value_site_pv" style="display:none"></span>
   <span id="busuanzi_value_site_uv" style="display:none"></span>
-
-  <!-- 悬浮分享按钮 -->
-  <div class="share-fab" onclick="openShare()">🔗</div>
 
   <!-- 分享弹窗 -->
   <div class="share-mask" id="shareMask" onclick="handleMaskClick(event)">
@@ -386,7 +292,6 @@
       <div class="share-title">分享给更多人看</div>
       <div class="share-desc">三大实时追踪 · 进度条出品</div>
 
-      <!-- 分tab选文案 -->
       <div class="share-tab-select">
         <button class="share-tab-btn active" data-tab="hz" onclick="selectShareTab('hz',this)">🛢️ 霍尔木兹</button>
         <button class="share-tab-btn" data-tab="el" onclick="selectShareTab('el',this)">🌡️ 厄尔尼诺</button>
@@ -425,7 +330,6 @@
           <span>更多</span>
         </div>
       </div>
-
       <button class="share-cancel" onclick="closeShare()">取消</button>
     </div>
   </div>
@@ -436,17 +340,19 @@
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <script>
-    // ── 配置 ──────────────────────────────────────────────────
     const TABS = {
       hz: { url: 'https://hz.clawx.gold/', loaded: false },
       el: { url: '/elnino/',               loaded: false },
       us: { url: '/election/',             loaded: false },
     };
-    const BASE_COUNT = 8888;   // 访问统计基数
+
+    // 访问统计基数（pv让显示从19356开始，uv从15112开始）
+    const PV_BASE = 19347;
+    const UV_BASE = 15105;
+
     let currentTab = 'hz';
     let shareTab   = 'hz';
 
-    // ── 初始化：预加载第一个 iframe ───────────────────────────
     (function init() {
       loadIframe('hz');
 
@@ -457,31 +363,20 @@
         const pvD  = document.getElementById('busuanzi_pv_display');
         const uvD  = document.getElementById('busuanzi_uv_display');
         if (pvEl && pvEl.innerText && pvEl.innerText !== '' && pvEl.innerText !== '0' && pvD && uvD && uvEl) {
-          pvD.innerText = parseInt(pvEl.innerText) + BASE_COUNT;
-          uvD.innerText = parseInt(uvEl.innerText) + BASE_COUNT;
+          pvD.innerText = parseInt(pvEl.innerText) + PV_BASE;
+          uvD.innerText = parseInt(uvEl.innerText) + UV_BASE;
         } else {
           setTimeout(applyBase, 500);
         }
       })();
     })();
 
-    // ── Tab 切换 ─────────────────────────────────────────────
     function switchTab(id) {
       if (currentTab === id) return;
       currentTab = id;
-
-      // 更新 tab 激活
-      document.querySelectorAll('.tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.id === id);
-      });
-      // 切换 iframe 容器
-      document.querySelectorAll('.iframe-wrap').forEach(w => {
-        w.classList.toggle('active', w.id === 'wrap-' + id);
-      });
-      // 懒加载
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.id === id));
+      document.querySelectorAll('.iframe-wrap').forEach(w => w.classList.toggle('active', w.id === 'wrap-' + id));
       if (!TABS[id].loaded) loadIframe(id);
-
-      // 同步分享tab
       syncShareTab(id);
     }
 
@@ -491,14 +386,11 @@
       iframe.src = TABS[id].url;
       TABS[id].loaded = true;
       iframe.onload = () => {
-        if (loader) {
-          loader.classList.add('hide');
-          setTimeout(() => loader.style.display = 'none', 400);
-        }
+        if (loader) { loader.classList.add('hide'); setTimeout(() => loader.style.display = 'none', 400); }
       };
     }
 
-    // ── 分享 ─────────────────────────────────────────────────
+    // ── 分享文案 ──────────────────────────────────────────────
     const SHARE_TEXTS = {
       hz: () => `🛢️ 霍尔木兹海峡实时追踪 · ${new Date().toLocaleDateString('zh-CN')}
 
@@ -533,9 +425,7 @@ WTI破百，油价牵动全球通胀
 
     function syncShareTab(id) {
       shareTab = id;
-      document.querySelectorAll('.share-tab-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.tab === id);
-      });
+      document.querySelectorAll('.share-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
       const el = document.getElementById('shareText');
       if (el) el.textContent = SHARE_TEXTS[id]();
     }
@@ -552,9 +442,7 @@ WTI破百，油价牵动全球通胀
       document.getElementById('shareMask').classList.add('show');
     }
 
-    function closeShare() {
-      document.getElementById('shareMask').classList.remove('show');
-    }
+    function closeShare() { document.getElementById('shareMask').classList.remove('show'); }
 
     function handleMaskClick(e) {
       if (e.target === document.getElementById('shareMask')) closeShare();
@@ -568,38 +456,26 @@ WTI破百，油价牵动全球通胀
         const ta = document.createElement('textarea');
         ta.value = text; document.body.appendChild(ta);
         ta.select(); document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast('已复制 ✅');
+        document.body.removeChild(ta); showToast('已复制 ✅');
       }
     }
 
     function shareWeibo() {
-      const url = encodeURIComponent('https://www.clawx.gold/tracker/');
-      const txt = encodeURIComponent(SHARE_TEXTS[shareTab]());
-      window.open(`https://service.weibo.com/share/share.php?title=${txt}&url=${url}`, '_blank');
+      window.open(`https://service.weibo.com/share/share.php?title=${encodeURIComponent(SHARE_TEXTS[shareTab]())}&url=${encodeURIComponent('https://www.clawx.gold/tracker/')}`, '_blank');
       closeShare();
     }
-
-    function shareWechat()      { showToast('请截图后分享到微信 📱'); closeShare(); }
-    function shareVideoAccount(){ showToast('请截图后分享到视频号 🎬'); closeShare(); }
-
+    function shareWechat()       { showToast('请截图后分享到微信 📱'); closeShare(); }
+    function shareVideoAccount() { showToast('请截图后分享到视频号 🎬'); closeShare(); }
     function nativeShare() {
       if (navigator.share) {
-        navigator.share({
-          title: '进度条追踪中心',
-          text: SHARE_TEXTS[shareTab](),
-          url: 'https://www.clawx.gold/tracker/',
-        }).catch(() => {});
-      } else {
-        copyText();
-      }
+        navigator.share({ title: '进度条追踪中心', text: SHARE_TEXTS[shareTab](), url: 'https://www.clawx.gold/tracker/' }).catch(()=>{});
+      } else { copyText(); }
       closeShare();
     }
 
     function showToast(msg) {
       const t = document.getElementById('hub-toast');
-      t.textContent = msg;
-      t.style.opacity = '1';
+      t.textContent = msg; t.style.opacity = '1';
       clearTimeout(t._timer);
       t._timer = setTimeout(() => { t.style.opacity = '0'; }, 2200);
     }
