@@ -1,12 +1,16 @@
 {
   "rewrites": [
     {
-      "destination": "https://wttr.in/:path*",
-      "source": "/api/wttr/:path*"
+      "source": "/api/wttr/:path*",
+      "destination": "https://wttr.in/:path*"
     },
     {
-      "destination": "http://139.196.122.66/elnino/elnino-data.json",
-      "source": "/elnino/elnino-data.json"
+      "source": "/elnino/elnino-data.json",
+      "destination": "http://139.196.122.66/elnino/elnino-data.json"
+    },
+    {
+      "source": "/election/election-data.json",
+      "destination": "http://139.196.122.66:8081/election-data.json"
     }
   ]
 }
