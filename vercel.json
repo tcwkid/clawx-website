@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/wttr/:path*",
-      "destination": "https://wttr.in/:path*"
+      "destination": "https://wttr.in/:path*",
+      "source": "/api/wttr/:path*"
+    },
+    {
+      "destination": "http://139.196.122.66/elnino/elnino-data.json",
+      "source": "/elnino/elnino-data.json"
     }
   ]
 }
